@@ -1,0 +1,19 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="CovidSimulation.App"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.Styles>
+        <FluentTheme />
+		<Style Selector="Button:pointerover  /template/ ContentPresenter#PART_ContentPresenter">
+			<Setter Property="Background" Value="Gainsboro" />
+		</Style>
+		<Style Selector="Button:pressed">
+			<Setter Property="Background" Value="DarkGray" />
+		</Style>
+		<Style Selector="Button">
+			<Setter Property="Background" Value="Gray" />
+		</Style>
+    </Application.Styles>
+</Application>

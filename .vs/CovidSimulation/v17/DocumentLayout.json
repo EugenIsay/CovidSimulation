@@ -1,0 +1,119 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\prdb\\Desktop\\IsayProj\\Covid\\CovidSimulation\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{71560081-4713-41EA-9E24-ACA40610DADF}|CovidSimulation\\CovidSimulation.csproj|c:\\users\\prdb\\desktop\\isayproj\\covid\\covidsimulation\\covidsimulation\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{71560081-4713-41EA-9E24-ACA40610DADF}|CovidSimulation\\CovidSimulation.csproj|solutionrelative:covidsimulation\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{71560081-4713-41EA-9E24-ACA40610DADF}|CovidSimulation\\CovidSimulation.csproj|c:\\users\\prdb\\desktop\\isayproj\\covid\\covidsimulation\\covidsimulation\\app.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{71560081-4713-41EA-9E24-ACA40610DADF}|CovidSimulation\\CovidSimulation.csproj|solutionrelative:covidsimulation\\app.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{71560081-4713-41EA-9E24-ACA40610DADF}|CovidSimulation\\CovidSimulation.csproj|c:\\users\\prdb\\desktop\\isayproj\\covid\\covidsimulation\\covidsimulation\\app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{71560081-4713-41EA-9E24-ACA40610DADF}|CovidSimulation\\CovidSimulation.csproj|solutionrelative:covidsimulation\\app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{71560081-4713-41EA-9E24-ACA40610DADF}|CovidSimulation\\CovidSimulation.csproj|c:\\users\\prdb\\desktop\\isayproj\\covid\\covidsimulation\\covidsimulation\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{71560081-4713-41EA-9E24-ACA40610DADF}|CovidSimulation\\CovidSimulation.csproj|solutionrelative:covidsimulation\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{71560081-4713-41EA-9E24-ACA40610DADF}|CovidSimulation\\CovidSimulation.csproj|c:\\users\\prdb\\desktop\\isayproj\\covid\\covidsimulation\\covidsimulation\\human.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{71560081-4713-41EA-9E24-ACA40610DADF}|CovidSimulation\\CovidSimulation.csproj|solutionrelative:covidsimulation\\human.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.axaml.cs",
+              "DocumentMoniker": "C:\\Users\\prdb\\Desktop\\IsayProj\\Covid\\CovidSimulation\\CovidSimulation\\App.axaml.cs",
+              "RelativeDocumentMoniker": "CovidSimulation\\App.axaml.cs",
+              "ToolTip": "C:\\Users\\prdb\\Desktop\\IsayProj\\Covid\\CovidSimulation\\CovidSimulation\\App.axaml.cs",
+              "RelativeToolTip": "CovidSimulation\\App.axaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T10:22:27.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "App.axaml",
+              "DocumentMoniker": "C:\\Users\\prdb\\Desktop\\IsayProj\\Covid\\CovidSimulation\\CovidSimulation\\App.axaml",
+              "RelativeDocumentMoniker": "CovidSimulation\\App.axaml",
+              "ToolTip": "C:\\Users\\prdb\\Desktop\\IsayProj\\Covid\\CovidSimulation\\CovidSimulation\\App.axaml",
+              "RelativeToolTip": "CovidSimulation\\App.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-01-30T10:21:47.894Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Human.cs",
+              "DocumentMoniker": "C:\\Users\\prdb\\Desktop\\IsayProj\\Covid\\CovidSimulation\\CovidSimulation\\Human.cs",
+              "RelativeDocumentMoniker": "CovidSimulation\\Human.cs",
+              "ToolTip": "C:\\Users\\prdb\\Desktop\\IsayProj\\Covid\\CovidSimulation\\CovidSimulation\\Human.cs",
+              "RelativeToolTip": "CovidSimulation\\Human.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T10:06:12.042Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.axaml",
+              "DocumentMoniker": "C:\\Users\\prdb\\Desktop\\IsayProj\\Covid\\CovidSimulation\\CovidSimulation\\MainWindow.axaml",
+              "RelativeDocumentMoniker": "CovidSimulation\\MainWindow.axaml",
+              "ToolTip": "C:\\Users\\prdb\\Desktop\\IsayProj\\Covid\\CovidSimulation\\CovidSimulation\\MainWindow.axaml",
+              "RelativeToolTip": "CovidSimulation\\MainWindow.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-01-30T08:16:34.916Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainWindow.axaml.cs",
+              "DocumentMoniker": "C:\\Users\\prdb\\Desktop\\IsayProj\\Covid\\CovidSimulation\\CovidSimulation\\MainWindow.axaml.cs",
+              "RelativeDocumentMoniker": "CovidSimulation\\MainWindow.axaml.cs",
+              "ToolTip": "C:\\Users\\prdb\\Desktop\\IsayProj\\Covid\\CovidSimulation\\CovidSimulation\\MainWindow.axaml.cs",
+              "RelativeToolTip": "CovidSimulation\\MainWindow.axaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T08:16:30.999Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
