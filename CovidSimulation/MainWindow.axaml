@@ -2,7 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="CovidSimulation.MainWindow"
 		xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
 		Background="Black"
@@ -13,10 +13,12 @@
 			<lvc:CartesianChart FontStyle="Oblique"  Foreground="White" Grid.Row="0" Name="MainChart">
 				
 			</lvc:CartesianChart>
-			<Button HorizontalAlignment="Right" Content="Начать симуляцию" Grid.Row="1"/>
+			<Button Click="ClickStart" HorizontalAlignment="Right" Content="Начать симуляцию" Grid.Row="1"/>
 		</Grid>
-		<Border Grid.Column="1">
-			
+		<Border Width="500" Height="500" Grid.Column="1">
+			<Canvas Background="White" Name="canvas">
+				
+			</Canvas>
 		</Border>
 	</Grid>
 </Window>

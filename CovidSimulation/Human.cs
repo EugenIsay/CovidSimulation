@@ -4,14 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace CovidSimulation
 {
     public class Human
     {
-        // status определяет группу человека, где 1 => уязвимые,
-        // 2 => инфицированные, 3 => выздоровевшие и 4 => умершие.
-        public int status { get; set; } = 1;
-        public int xCoordinate { get; set; }
-        public int yCoordinate { get; set; }
+        public string status { get; set; } = "Susceptible";
+        public double xCoordinate { get; set; } = new Random().Next(0, 500);
+        public double yCoordinate { get; set; } = new Random().Next(0, 500);
+
+        public double xDestination { get; set; } = new Random().Next(0, 500);
+        public double yDestination { get; set; } = new Random().Next(0, 500);
+
+        public double speed { get; set; } = new Random().Next(1 , 10)/100;
+        
+
+        public bool ReachedDestination
+        {
+            get => xCoordinate == xDestination && yCoordinate == yDestination;
+        }
+
+        public Task Task()
+        {
+            if (!ReachedDestination)
+            {
+
+            }
+            return System.Threading.Tasks.Task.CompletedTask;
+        }
+
+
+
     }
 }
