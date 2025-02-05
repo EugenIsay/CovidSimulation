@@ -63,6 +63,7 @@ C:\Users\prdb\Desktop\IsayProj\Covid\CovidSimulation\CovidSimulation\obj\Debug\n
 C:\Users\prdb\Desktop\IsayProj\Covid\CovidSimulation\CovidSimulation\obj\Debug\net8.0\CovidSimulation.AssemblyInfoInputs.cache
 C:\Users\prdb\Desktop\IsayProj\Covid\CovidSimulation\CovidSimulation\obj\Debug\net8.0\CovidSimulation.AssemblyInfo.cs
 C:\Users\prdb\Desktop\IsayProj\Covid\CovidSimulation\CovidSimulation\obj\Debug\net8.0\CovidSimulation.csproj.CoreCompileInputs.cache
+C:\Users\prdb\Desktop\IsayProj\Covid\CovidSimulation\CovidSimulation\obj\Debug\net8.0\CovidSimulation.sourcelink.json
 C:\Users\prdb\Desktop\IsayProj\Covid\CovidSimulation\CovidSimulation\obj\Debug\net8.0\Avalonia\CovidSimulation.dll
 C:\Users\prdb\Desktop\IsayProj\Covid\CovidSimulation\CovidSimulation\obj\Debug\net8.0\Avalonia\CovidSimulation.pdb
 C:\Users\prdb\Desktop\IsayProj\Covid\CovidSimulation\CovidSimulation\obj\Debug\net8.0\refint\Avalonia\CovidSimulation.dll

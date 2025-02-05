@@ -6,17 +6,18 @@
         x:Class="CovidSimulation.MainWindow"
 		xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
 		Background="Black"
+		xmlns:vms="using:ViewModelsSamples.StackedArea.Basic;"
         Title="CovidSimulation"
 		>
 	<Grid ColumnDefinitions="*,*">
 		<Grid Grid.Column="0" RowDefinitions="5*, 3*">
-			<lvc:CartesianChart FontStyle="Oblique"  Foreground="White" Grid.Row="0" Name="MainChart">
-				
+			<lvc:CartesianChart EasingFunction="{x:Null}"  AnimationsSpeed="0" FontStyle="Oblique"  Foreground="White" Grid.Row="0" Name="MainChart">
+			
 			</lvc:CartesianChart>
 			<Button Click="ClickStart" HorizontalAlignment="Right" Content="Начать симуляцию" Grid.Row="1"/>
 		</Grid>
-		<Border Width="500" Height="500" Grid.Column="1">
-			<Canvas Background="White" Name="canvas">
+		<Border BorderBrush="White" BorderThickness="2" Width="500" Height="500" Grid.Column="1">
+			<Canvas Name="canvas">
 				
 			</Canvas>
 		</Border>

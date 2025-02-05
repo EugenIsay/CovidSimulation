@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CovidSimulation")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c0b777cd082cbb5f356d9ec006ae9395c68c2bf1")]
 [assembly: System.Reflection.AssemblyProductAttribute("CovidSimulation")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CovidSimulation")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

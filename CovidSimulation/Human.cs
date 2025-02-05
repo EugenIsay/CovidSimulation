@@ -12,26 +12,30 @@ namespace CovidSimulation
         Random random = new Random();
         public Human()
         {
-            xCoordinate = 2;
-            yCoordinate = 3;
-            xDestination = 5;
-            yDestination = 7;
+            xCoordinate = random.Next(1, 500);
+            yCoordinate = random.Next(1, 500);
+            xDestination = random.Next(1, 500);
+            yDestination = random.Next(1, 500);
             double deltaX = xDestination - xCoordinate;
             double deltaY = yDestination - yCoordinate;
             vectorX = deltaX / Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
             vectorY = deltaY / Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
             speed = 1;
-            
+
         }
 
         public int id;
 
         public string status { get; set; } = "Susceptible";
 
-        public double xCoordinate { get; set; } 
+        public double xCoordinate { get; set; }
         public double yCoordinate { get; set; }
+        public (int, int) GetCoordinates
+        {
+            get => ((int)xCoordinate, (int)yCoordinate);
+        }
 
-        public double xDestination { get; set; } 
+        public double xDestination { get; set; }
         public double yDestination { get; set; }
 
         public double speed { get; set; }
@@ -54,16 +58,16 @@ namespace CovidSimulation
 
         public void Going()
         {
-
-            if (!ReachedDestination)
+            if (status!= "Dead")
+            if (!ReachedDestination && xCoordinate < 500 && xCoordinate > 0 && yCoordinate < 500 && yCoordinate > 0)
             {
                 xCoordinate = xCoordinate + speed * vectorX;
                 yCoordinate = yCoordinate + speed * vectorY;
             }
             else
             {
-                xDestination = random.Next(0, 500);
-                yDestination = random.Next(0, 500);
+                xDestination = random.Next(1, 500);
+                yDestination = random.Next(1, 500);
                 double deltaX = xDestination - xCoordinate;
                 double deltaY = yDestination - yCoordinate;
                 vectorX = deltaX / Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
