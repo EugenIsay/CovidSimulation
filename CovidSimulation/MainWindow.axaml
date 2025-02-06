@@ -11,15 +11,20 @@
 		>
 	<Grid ColumnDefinitions="*,*">
 		<Grid Grid.Column="0" RowDefinitions="5*, 3*">
-			<lvc:CartesianChart EasingFunction="{x:Null}"  AnimationsSpeed="0" FontStyle="Oblique"  Foreground="White" Grid.Row="0" Name="MainChart">
+			<lvc:CartesianChart LegendPosition="Bottom" EasingFunction="{x:Null}"  AnimationsSpeed="0" FontStyle="Oblique"  Foreground="White" Grid.Row="0" Name="MainChart">
 			
 			</lvc:CartesianChart>
 			<Button Click="ClickStart" HorizontalAlignment="Right" Content="Начать симуляцию" Grid.Row="1"/>
 		</Grid>
-		<Border BorderBrush="White" BorderThickness="2" Width="500" Height="500" Grid.Column="1">
-			<Canvas Name="canvas">
-				
-			</Canvas>
-		</Border>
+		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+			<TextBlock Name="Removed" Foreground="Gainsboro"/>
+			<TextBlock Name="Active" Foreground="Tomato"/>
+			<Border BorderBrush="White" BorderThickness="2" Width="500" Height="500" >
+				<Canvas Name="canvas">
+
+				</Canvas>
+			</Border>
+		</StackPanel>
+
 	</Grid>
 </Window>

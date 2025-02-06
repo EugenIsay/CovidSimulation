@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Avalonia.Threading;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,16 +11,12 @@ namespace CovidSimulation
     public class Human
     {
         Random random = new Random();
+        DispatcherTimer CheckTimer;
         public Human()
         {
             xCoordinate = random.Next(1, 500);
             yCoordinate = random.Next(1, 500);
-            xDestination = random.Next(1, 500);
-            yDestination = random.Next(1, 500);
-            double deltaX = xDestination - xCoordinate;
-            double deltaY = yDestination - yCoordinate;
-            vectorX = deltaX / Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
-            vectorY = deltaY / Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
+            ChangeDestination();
             speed = 1;
 
         }
@@ -27,6 +24,7 @@ namespace CovidSimulation
         public int id;
 
         public string status { get; set; } = "Susceptible";
+        public int sickDays { get; set; }
 
         public double xCoordinate { get; set; }
         public double yCoordinate { get; set; }
@@ -58,20 +56,48 @@ namespace CovidSimulation
 
         public void Going()
         {
-            if (status!= "Dead")
-            if (!ReachedDestination && xCoordinate < 500 && xCoordinate > 0 && yCoordinate < 500 && yCoordinate > 0)
+            if (status != "Dead")
+                if (!ReachedDestination && xCoordinate < 500 && xCoordinate > 0 && yCoordinate < 500 && yCoordinate > 0)
+                {
+                    xCoordinate = xCoordinate + speed * vectorX;
+                    yCoordinate = yCoordinate + speed * vectorY;
+                }
+                else
+                {
+                    ChangeDestination();
+                }
+        }
+
+        public void ChangeDestination()
+        {
+            xDestination = random.Next(1, 500);
+            yDestination = random.Next(1, 500);
+            double deltaX = xDestination - xCoordinate;
+            double deltaY = yDestination - yCoordinate;
+            vectorX = deltaX / Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
+            vectorY = deltaY / Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
+        }
+
+        public void InfectionStarted()
+        {
+            status = "Infected";
+            CheckTimer = new DispatcherTimer();
+            CheckTimer.Interval = TimeSpan.FromSeconds(1);
+            CheckTimer.Tick += CheckHuman;
+            CheckTimer.Start();
+        }
+        public void CheckHuman(object sender, EventArgs e)
+        {
+            sickDays++;
+            if (sickDays > 14 && random.Next(1, 100) <= 12)
             {
-                xCoordinate = xCoordinate + speed * vectorX;
-                yCoordinate = yCoordinate + speed * vectorY;
+                status = "Dead";
+                CheckTimer.Stop();
             }
-            else
+            if ((sickDays > 14 && random.Next(1, 100) <= 12) || (sickDays > 21 && random.Next(1, 100) <= 44) || sickDays == 38)
             {
-                xDestination = random.Next(1, 500);
-                yDestination = random.Next(1, 500);
-                double deltaX = xDestination - xCoordinate;
-                double deltaY = yDestination - yCoordinate;
-                vectorX = deltaX / Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
-                vectorY = deltaY / Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
+                status = "Recovered";
+                CheckTimer.Stop();
             }
         }
 
