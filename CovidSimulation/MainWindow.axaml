@@ -9,12 +9,36 @@
 		xmlns:vms="using:ViewModelsSamples.StackedArea.Basic;"
         Title="CovidSimulation"
 		>
+	<Window.Styles>
+		<Style Selector="TextBlock">
+			<Setter Property="FontSize" Value="10"/>
+			<Setter Property="Margin" Value="0, -10"/>
+		</Style>
+	</Window.Styles>
 	<Grid ColumnDefinitions="*,*">
 		<Grid Grid.Column="0" RowDefinitions="5*, 3*">
 			<lvc:CartesianChart LegendPosition="Bottom" EasingFunction="{x:Null}"  AnimationsSpeed="0" FontStyle="Oblique"  Foreground="White" Grid.Row="0" Name="MainChart">
-			
+
 			</lvc:CartesianChart>
-			<Button Click="ClickStart" HorizontalAlignment="Right" Content="Начать симуляцию" Grid.Row="1"/>
+			<Grid Grid.Row="1" ColumnDefinitions="3*, *">
+				<StackPanel Name="StatsPanel" Margin="20">
+					<TextBlock Foreground="White" Text="{Binding #CP.Value, StringFormat='Вероятность заражения {0}%'}" HorizontalAlignment="Center"/>
+					<Slider Background="White" TickPlacement="TopLeft" IsSnapToTickEnabled="True" TickFrequency="1"   Minimum="1" Value="30" x:Name="CP"/>
+
+					<TextBlock Foreground="White" Text="{Binding #AC.Value, StringFormat='Доля невыявленых {0}%'}" HorizontalAlignment="Center"/>
+					<Slider Background="White" TickPlacement="TopLeft" IsSnapToTickEnabled="True" TickFrequency="1"   Minimum="1" Value="40" x:Name="AC"/>
+
+					<TextBlock Foreground="White" Text="{Binding #DC.Value, StringFormat='Смертность {0}%'}" HorizontalAlignment="Center"/>
+					<Slider Background="White" TickPlacement="TopLeft" IsSnapToTickEnabled="True" TickFrequency="1"   Minimum="1" Value="12" x:Name="DC"/>
+					
+					<TextBlock Foreground="White" Text="{Binding #SD.Value, StringFormat='Вероятность соблюдения изоляции {0}%'}" HorizontalAlignment="Center"/>
+					<Slider Background="White" TickPlacement="TopLeft" IsSnapToTickEnabled="True" TickFrequency="1"   Minimum="0" Value="40" x:Name="SD"/>
+
+					<TextBlock Foreground="White" Text="{Binding #IP.Value, StringFormat='Длительность изоляции {0}'}" HorizontalAlignment="Center"/>
+					<Slider Background="White" TickPlacement="TopLeft" IsSnapToTickEnabled="True" TickFrequency="1" Minimum="0" Value="45" x:Name="IP"/>
+				</StackPanel>
+
+			</Grid>
 		</Grid>
 		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
 			<TextBlock Name="Removed" Foreground="Gainsboro"/>
@@ -24,6 +48,7 @@
 
 				</Canvas>
 			</Border>
+			<Button Margin="0,15" Grid.Column="10" Name="Start" Click="ClickStart" HorizontalAlignment="Center" Content="Начать симуляцию" />
 		</StackPanel>
 
 	</Grid>

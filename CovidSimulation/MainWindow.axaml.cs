@@ -7,6 +7,7 @@ using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
@@ -33,17 +34,23 @@ namespace CovidSimulation
         {
             InitializeComponent();
             AddHumans();
-
         }
 
         private async void ClickStart(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
+            Start.IsEnabled = false;
             if (humans.Count == 0)
                 AddHumans();
             Susceptible.Clear();
             Infected.Clear();
             Recovered.Clear();
             Dead.Clear();
+            StatsPanel.IsEnabled = false;
+            Stats.InfectionChance = (int)CP.Value;
+            Stats.InfectionChance = (int)SD.Value;
+            Stats.IsolationPeriod = (int)IP.Value;
+            Stats.UndetectedChance = (int)AC.Value;
+            Stats.DeathChance = (int)DC.Value;
             MoumentTimer = new DispatcherTimer();
             MoumentTimer.Interval = TimeSpan.FromMilliseconds(10);
             MoumentTimer.Tick += ChangePosition;
@@ -77,7 +84,7 @@ namespace CovidSimulation
                 {
                     foreach (var stakedHuman in stackedHumans.Where(h => h.status == "Susceptible"))
                     {
-                        if (random.Next(1, 10) < 3)
+                        if (random.Next(1, 100) < Stats.InfectionChance)
                         {
                             humans[stakedHuman.id].InfectionStarted();
                         }
@@ -113,6 +120,8 @@ namespace CovidSimulation
             ChartTimer.Stop();
             MoumentTimer.Stop();
             humans.Clear();
+            Start.IsEnabled = true;
+            StatsPanel.IsEnabled = true;
         }
         public void AddHumans()
         {

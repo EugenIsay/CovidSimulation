@@ -9,6 +9,9 @@
 		<Style Selector="Button:pointerover  /template/ ContentPresenter#PART_ContentPresenter">
 			<Setter Property="Background" Value="Gainsboro" />
 		</Style>
+		<Style Selector="Selector:pointerover  /template/ Slider">
+			<Setter Property="Background" Value="Gainsboro" />
+		</Style>
 		<Style Selector="Button:pressed">
 			<Setter Property="Background" Value="DarkGray" />
 		</Style>
