@@ -15,34 +15,43 @@
 			<Setter Property="Margin" Value="0, -10"/>
 		</Style>
 	</Window.Styles>
-	<Grid ColumnDefinitions="*,*">
-		<Grid Grid.Column="0" RowDefinitions="5*, 3*">
-			<lvc:CartesianChart LegendPosition="Bottom" EasingFunction="{x:Null}"  AnimationsSpeed="0" FontStyle="Oblique"  Foreground="White" Grid.Row="0" Name="MainChart">
+	<Grid ColumnDefinitions="5*, * ,5*"  RowDefinitions="5*,3*">
+		<lvc:CartesianChart Grid.ColumnSpan="2" LegendPosition="Bottom" EasingFunction="{x:Null}"  AnimationsSpeed="0" FontStyle="Oblique"  Foreground="White" Grid.Row="0" Name="MainChart">
 
-			</lvc:CartesianChart>
-			<Grid Grid.Row="1" ColumnDefinitions="3*, *">
-				<StackPanel Name="StatsPanel" Margin="20">
-					<TextBlock Foreground="White" Text="{Binding #CP.Value, StringFormat='Вероятность заражения {0}%'}" HorizontalAlignment="Center"/>
-					<Slider Background="White" TickPlacement="TopLeft" IsSnapToTickEnabled="True" TickFrequency="1"   Minimum="1" Value="30" x:Name="CP"/>
+		</lvc:CartesianChart>
+		<StackPanel Grid.Row="1" Name="StatsPanel" Margin="20">
+			<TextBlock Foreground="White" Text="{Binding #CP.Value, StringFormat='Вероятность заражения {0}%'}" HorizontalAlignment="Center"/>
+			<Slider Background="White" TickPlacement="TopLeft" IsSnapToTickEnabled="True" TickFrequency="1"   Minimum="1" Value="30" x:Name="CP"/>
 
-					<TextBlock Foreground="White" Text="{Binding #AC.Value, StringFormat='Доля невыявленых {0}%'}" HorizontalAlignment="Center"/>
-					<Slider Background="White" TickPlacement="TopLeft" IsSnapToTickEnabled="True" TickFrequency="1"   Minimum="1" Value="40" x:Name="AC"/>
+			<TextBlock Foreground="White" Text="{Binding #AC.Value, StringFormat='Доля невыявленых {0}%'}" HorizontalAlignment="Center"/>
+			<Slider Background="White" TickPlacement="TopLeft" IsSnapToTickEnabled="True" TickFrequency="1"   Minimum="1" Value="40" x:Name="AC"/>
 
-					<TextBlock Foreground="White" Text="{Binding #DC.Value, StringFormat='Смертность {0}%'}" HorizontalAlignment="Center"/>
-					<Slider Background="White" TickPlacement="TopLeft" IsSnapToTickEnabled="True" TickFrequency="1"   Minimum="1" Value="12" x:Name="DC"/>
-					
-					<TextBlock Foreground="White" Text="{Binding #SD.Value, StringFormat='Вероятность соблюдения изоляции {0}%'}" HorizontalAlignment="Center"/>
-					<Slider Background="White" TickPlacement="TopLeft" IsSnapToTickEnabled="True" TickFrequency="1"   Minimum="0" Value="40" x:Name="SD"/>
+			<TextBlock Foreground="White" Text="{Binding #DC.Value, StringFormat='Смертность {0}%'}" HorizontalAlignment="Center"/>
+			<Slider Background="White" TickPlacement="TopLeft" IsSnapToTickEnabled="True" TickFrequency="1"   Minimum="1" Value="12" x:Name="DC"/>
 
-					<TextBlock Foreground="White" Text="{Binding #IP.Value, StringFormat='Длительность изоляции {0}'}" HorizontalAlignment="Center"/>
-					<Slider Background="White" TickPlacement="TopLeft" IsSnapToTickEnabled="True" TickFrequency="1" Minimum="0" Value="45" x:Name="IP"/>
-				</StackPanel>
+			<TextBlock Foreground="White" Text="{Binding #SD.Value, StringFormat='Вероятность соблюдения изоляции {0}%'}" HorizontalAlignment="Center"/>
+			<Slider Background="White" TickPlacement="TopLeft" IsSnapToTickEnabled="True" TickFrequency="1"   Minimum="0" Value="40" x:Name="SD"/>
 
-			</Grid>
-		</Grid>
-		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
-			<TextBlock Name="Removed" Foreground="Gainsboro"/>
-			<TextBlock Name="Active" Foreground="Tomato"/>
+			<TextBlock Foreground="White" Text="{Binding #IP.Value, StringFormat='Длительность изоляции {0}'}" HorizontalAlignment="Center"/>
+			<Slider Background="White" TickPlacement="TopLeft" IsSnapToTickEnabled="True" TickFrequency="1" Minimum="0" Value="45" x:Name="IP"/>
+		</StackPanel>
+		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="1">
+			<TextBlock Margin="0,5" HorizontalAlignment="Center" FontWeight="Bold" Text="Зона карантина" Foreground="Tomato"/>
+			<Border  Width="128" Height="128" BorderBrush="White" BorderThickness="2">
+				<Canvas Name="QuarantineCanvas"   >
+
+				</Canvas>
+			</Border>
+			
+		</StackPanel>
+
+
+		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Grid.RowSpan="2" Grid.Column="2">
+			<StackPanel Margin="5" Orientation="Vertical" Spacing="20">
+				<TextBlock Name="Removed" Text="#" Foreground="Gainsboro"/>
+				<TextBlock Name="Active" Text="#" Foreground="Tomato"/>
+			</StackPanel>
+
 			<Border BorderBrush="White" BorderThickness="2" Width="500" Height="500" >
 				<Canvas Name="canvas">
 

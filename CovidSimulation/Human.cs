@@ -10,12 +10,14 @@ namespace CovidSimulation
 {
     public class Human
     {
+        int xMax = 501;
+        int yMax = 501;
         Random random = new Random();
         DispatcherTimer CheckTimer;
         public Human()
         {
-            xCoordinate = random.Next(1, 500);
-            yCoordinate = random.Next(1, 500);
+            xCoordinate = random.Next(1, 499);
+            yCoordinate = random.Next(1, 499);
             ChangeDestination();
             speed = 1;
 
@@ -24,6 +26,9 @@ namespace CovidSimulation
         public int id;
 
         public string status { get; set; } = "Susceptible";
+        public bool knowAboutInfecion = false;
+        public bool inQuarantine = false;
+        int daysInQuarantine = 0;
         public int sickDays { get; set; }
 
         public double xCoordinate { get; set; }
@@ -57,7 +62,7 @@ namespace CovidSimulation
         public void Going()
         {
             if (status != "Dead")
-                if (!ReachedDestination && xCoordinate < 500 && xCoordinate > 0 && yCoordinate < 500 && yCoordinate > 0)
+                if (!ReachedDestination && xCoordinate < xMax && xCoordinate > 0 && yCoordinate < yMax && yCoordinate > 0)
                 {
                     xCoordinate = xCoordinate + speed * vectorX;
                     yCoordinate = yCoordinate + speed * vectorY;
@@ -70,8 +75,8 @@ namespace CovidSimulation
 
         public void ChangeDestination()
         {
-            xDestination = random.Next(1, 500);
-            yDestination = random.Next(1, 500);
+            xDestination = random.Next(1, xMax);
+            yDestination = random.Next(1, yMax);
             double deltaX = xDestination - xCoordinate;
             double deltaY = yDestination - yCoordinate;
             vectorX = deltaX / Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
@@ -81,15 +86,27 @@ namespace CovidSimulation
         public void InfectionStarted()
         {
             status = "Infected";
+            knowAboutInfecion = false;
             CheckTimer = new DispatcherTimer();
             CheckTimer.Interval = TimeSpan.FromSeconds(1);
             CheckTimer.Tick += CheckHuman;
             CheckTimer.Start();
         }
+
+        public void QuarantineStarted()
+        {
+            xMax = 129;
+            yMax = 129;
+            xCoordinate = 64;
+           yCoordinate = 64;
+            inQuarantine = true;
+            ChangeDestination();
+        }
+
         public void CheckHuman(object sender, EventArgs e)
         {
             sickDays++;
-            if (sickDays > 14 && random.Next(1, 100) <= 12)
+            if (sickDays > 14 && random.Next(1, 100) <= Stats.DeathChance)
             {
                 status = "Dead";
                 CheckTimer.Stop();
@@ -98,6 +115,24 @@ namespace CovidSimulation
             {
                 status = "Recovered";
                 CheckTimer.Stop();
+            }
+            if (!knowAboutInfecion && random.Next(1, 100) >= Stats.UndetectedChance )
+            {
+                knowAboutInfecion = true;
+            }
+            if (inQuarantine)
+            {
+                daysInQuarantine++;
+                if (daysInQuarantine >= Stats.IsolationPeriod)
+                {
+                    inQuarantine = false;
+                    xCoordinate = 250;
+                    yCoordinate = 250;
+                    xMax = 501;
+                    yMax = 501;
+                    knowAboutInfecion = false; 
+                    ChangeDestination();
+                }
             }
         }
 
