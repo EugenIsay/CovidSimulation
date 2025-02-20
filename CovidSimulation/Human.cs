@@ -10,12 +10,16 @@ namespace CovidSimulation
 {
     public class Human
     {
+        // Определение границ по котором пользователь может двигаться
         int xMax = 501;
         int yMax = 501;
+        // Объявление рандома
         Random random = new Random();
+        // Таймер
         DispatcherTimer CheckTimer;
         public Human()
         {
+            // При создании случайно определяет координаты и цель
             xCoordinate = random.Next(1, 499);
             yCoordinate = random.Next(1, 499);
             ChangeDestination();
@@ -59,20 +63,24 @@ namespace CovidSimulation
             }
         }
 
+        // Метод для ходьбы человека
         public void Going()
         {
             if (status != "Dead")
                 if (!ReachedDestination && xCoordinate < xMax && xCoordinate > 0 && yCoordinate < yMax && yCoordinate > 0)
                 {
+                    // Здесь он двигается
                     xCoordinate = xCoordinate + speed * vectorX;
                     yCoordinate = yCoordinate + speed * vectorY;
                 }
                 else
                 {
+                    // Здесь меняет цель, если достиг изначальную
                     ChangeDestination();
                 }
         }
 
+        // Метод для смены цели для человека
         public void ChangeDestination()
         {
             xDestination = random.Next(1, xMax);
@@ -83,6 +91,7 @@ namespace CovidSimulation
             vectorY = deltaY / Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
         }
 
+        // Начало заражения
         public void InfectionStarted()
         {
             status = "Infected";
@@ -93,6 +102,7 @@ namespace CovidSimulation
             CheckTimer.Start();
         }
 
+        // Помещён под карантин
         public void QuarantineStarted()
         {
             xMax = 129;
@@ -103,6 +113,7 @@ namespace CovidSimulation
             ChangeDestination();
         }
 
+        // Проверка сколько болеет человек, умрёт ли или выздоровеет
         public void CheckHuman(object sender, EventArgs e)
         {
             sickDays++;

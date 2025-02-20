@@ -25,43 +25,49 @@ namespace CovidSimulation
     {
         Random random = new Random();
 
+        // Лист с людьми
         List<Human> humans = new List<Human>();
+
+        // Листы сохраняющие данные о том, сколько кого было в определённое время
         List<double> Susceptible = new List<double>();
         List<double> Infected = new List<double>();
         List<double> Recovered = new List<double>();
         List<double> Dead = new List<double>();
-        List<int> Days = new List<int>();
 
+        // Таймеры
         DispatcherTimer ChartTimer;
         DispatcherTimer MoumentTimer;
         DispatcherTimer DaysTimer;
 
-
-
-        int CurrentDay = 1;
-
+        // Объявление графика
         public ISeries[] Series { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            // Автоматическое добавление людей
             AddHumans();
         }
 
+        // Начало симуляции
         private async void ClickStart(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             Start.IsEnabled = false;
+            
             if (humans.Count == 0)
                 AddHumans();
+            // Очищение листов на то случай, если пользователь захочет перезапустить симуляцию
             Susceptible.Clear();
             Infected.Clear();
             Recovered.Clear();
             Dead.Clear();
             StatsPanel.IsEnabled = false;
+            // Сохранение вводимых пользователем значений
             Stats.InfectionChance = (int)CP.Value;
             Stats.InfectionChance = (int)SD.Value;
             Stats.IsolationPeriod = (int)IP.Value;
             Stats.UndetectedChance = (int)AC.Value;
             Stats.DeathChance = (int)DC.Value;
+            // Запуск таймеров
             MoumentTimer = new DispatcherTimer();
             MoumentTimer.Interval = TimeSpan.FromMilliseconds(10);
             MoumentTimer.Tick += ChangePosition;
@@ -70,17 +76,14 @@ namespace CovidSimulation
             ChartTimer.Interval = TimeSpan.FromMilliseconds(125);
             ChartTimer.Tick += ChangeChart;
             ChartTimer.Start();
-
-            //DaysTimer = new DispatcherTimer();
-            //DaysTimer.Interval = TimeSpan.FromSeconds(1);
-            //DaysTimer.Tick += DayPassed;
-            //DaysTimer.Start();
         }
+        // Метод которые каждые милисек. считает движение людей
         private void ChangePosition(object sender, EventArgs e)
         {
             foreach (var human in humans)
             {
                 Ellipse ellipse = new Ellipse();
+                // Определение где находится пользователь
                 if (!human.inQuarantine)
                 {
                     ellipse = (canvas.Children.FirstOrDefault(e => int.Parse(e.Tag.ToString()) == human.id) as Ellipse);
@@ -107,7 +110,10 @@ namespace CovidSimulation
                         Canvas.SetTop(ellipse, human.yCoordinate);
                     }
                 }
+                // Вызывание метода ходьбы
                 human.Going();
+
+                // Смена цвета если статус человека поменялся
                 switch (human.status)
                 {
                     case "Infected":
@@ -126,8 +132,9 @@ namespace CovidSimulation
                         ellipse.Fill = Brush.Parse("Gray");
                         break;
                 }
+                // Вычисляет людей, которые находятся в одной точке с выбраным
                 List<Human> stackedHumans = humans.Where(h => Math.Sqrt(Math.Pow(h.xCoordinate - human.xCoordinate, 2) + Math.Pow(h.yCoordinate - human.yCoordinate, 2)) < 3 && !h.inQuarantine).ToList();
-
+                // Проверка на заражение
                 if (stackedHumans.Count() >= 2 && stackedHumans.Select(h => h.status).ToList().Contains("Infected"))
                 {
                     foreach (var stakedHuman in stackedHumans.Where(h => h.status == "Susceptible"))
@@ -138,11 +145,13 @@ namespace CovidSimulation
                         }
                     }
                 }
+                // Движение человека на графике
                 Canvas.SetLeft(ellipse, human.xCoordinate);
                 Canvas.SetTop(ellipse, human.yCoordinate);
             }
 
         }
+        // Метод, для прорисовки графика
         private void ChangeChart(object sender, EventArgs e)
         {
             Susceptible.Add(humans.Where(h => h.status == "Susceptible").Count());
@@ -156,7 +165,7 @@ namespace CovidSimulation
                 new StackedAreaSeries<double> { Values = Dead, Fill = new SolidColorPaint(SKColors.PaleVioletRed), Name="Умершие" }
                 };
             MainChart.Series = Series;
-
+            // Начало карантина
             if (humans.Where(h => h.status == "Infected" && h.knowAboutInfecion).Count() > 50)
             {
                 List<Human> toQuarantine = humans.Where(h => h.status == "Infected" && !h.inQuarantine && h.knowAboutInfecion).ToList();
@@ -167,26 +176,15 @@ namespace CovidSimulation
                 }    
             }
 
-            //MainChart.XAxes = new List<Axis>
-            //{
-            //    new Axis()
-            //    {
-            //        Labels = Days.Select(d => d.ToString()).ToList(),
-            //    }
-            //};
-
             Removed.Text = $"# Выбывшие {Recovered.Last() + Dead.Last()}";
             Active.Text = $"# Активные случаи {Infected.Last()}";
+            // Остановка симуляции при отсутсвии заражёных
             if (humans.Where(h => h.status == "Infected").Count() == 0)
             {
                 StopTimers();
             }
         }
-        private void DayPassed(object sender, EventArgs e)
-        {
-            CurrentDay++;
-            Days.Add(CurrentDay);
-        }
+        // Метод для остановки всех таймеров
         public void StopTimers()
         {
             ChartTimer.Stop();
@@ -195,9 +193,11 @@ namespace CovidSimulation
             Start.IsEnabled = true;
             StatsPanel.IsEnabled = true;
         }
+        // Метод для добавления людей
         public void AddHumans()
         {
             canvas.Children.Clear();
+            QuarantineCanvas.Children.Clear();
             for (int i = 0; i < 500; i++)
             {
                 humans.Add(new Human());
